@@ -1,0 +1,53 @@
+﻿@model List<NetMvcApp.Models.InboxMessageViewModel>
+@{
+    ViewData["Title"] = "البريد الوارد";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+@if (Model.Any())
+{
+    <table class="table table-striped table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>من</th>
+                <th>الوقت والتاريخ</th>
+                <th>نوع التشفير</th>
+                <th>معاينة</th>
+                <th>إجراءات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var message in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => message.SenderName)</td>
+                    <td>@message.ReceivedTimestamp.ToString("g")</td>
+                    <td>@Html.DisplayFor(modelItem => message.EncryptionType)</td>
+                    <td>@Html.DisplayFor(modelItem => message.ShortPreview)</td>
+                    <td>
+                        <a asp-action="ViewMessageDetail" asp-controller="Message" asp-route-messageId="@message.MessageId" asp-route-messageType="@message.MessageType" class="btn btn-info btn-sm">عرض التفاصيل</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>لا توجد رسائل في صندوق البريد الوارد حاليًا.</p>
+}
+

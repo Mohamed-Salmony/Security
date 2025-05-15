@@ -1,0 +1,60 @@
+﻿@model NetMvcApp.Models.MessageDetailViewModel
+@{
+    ViewData["Title"] = "تفاصيل الرسالة";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h4>الرسالة المستلمة</h4>
+    <hr />
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger" role="alert">
+            @Model.ErrorMessage
+        </div>
+    }
+    else
+    {
+        <dl class="row">
+            <dt class="col-sm-3">
+                من:
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.SenderName)
+            </dd>
+
+            <dt class="col-sm-3">
+                تاريخ الاستلام:
+            </dt>
+            <dd class="col-sm-9">
+                @Model.ReceivedTimestamp.ToString("g")
+            </dd>
+
+            <dt class="col-sm-3">
+                نوع التشفير:
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.EncryptionType)
+            </dd>
+
+            <dt class="col-sm-3">
+                محتوى الرسالة:
+            </dt>
+            <dd class="col-sm-9">
+                @if (!string.IsNullOrEmpty(Model.DecryptedContent))
+                {
+                    <pre style="white-space: pre-wrap; word-wrap: break-word;">@Html.DisplayFor(model => model.DecryptedContent)</pre>
+                }
+                else
+                {
+                    <span class="text-muted">[لا يوجد محتوى لعرضه أو فشل فك التشفير]</span>
+                }
+            </dd>
+        </dl>
+    }
+</div>
+<div>
+    <a asp-action="Inbox" class="btn btn-secondary">العودة إلى البريد الوارد</a>
+</div>
+

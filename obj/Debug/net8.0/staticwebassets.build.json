@@ -1,0 +1,20 @@
+{
+  "Version": 1,
+  "Hash": "oGf1Rl3WIamcumQ1owCTXuCc6Dwflf/gO4/RlX3Gew0=",
+  "Source": "NetMvcApp",
+  "BasePath": "_content/NetMvcApp",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "NetMvcApp\\wwwroot",
+      "Source": "NetMvcApp",
+      "ContentRoot": "D:\\home\\ubuntu\\Security\\wwwroot\\",
+      "BasePath": "_content/NetMvcApp",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [],
+  "Endpoints": []
+}

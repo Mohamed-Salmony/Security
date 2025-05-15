@@ -1,0 +1,20 @@
+@model NetMvcApp.Models.VerifyPhoneNumberViewModel
+@{ Layout = "_Layout"; ViewData["Title"] = "التحقق من رقم الهاتف"; }
+<h2>@ViewData["Title"]</h2>
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+<form asp-action="VerifyPhoneNumber" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Email" />
+    <p>تم إرسال طلب إعادة تعيين كلمة المرور للبريد الإلكتروني: @Model.Email</p>
+    <p>الرجاء إدخال رقم الهاتف المسجل مع هذا الحساب للمتابعة.</p>
+    <div class="form-group">
+        <label asp-for="PhoneNumber"></label>
+        <input asp-for="PhoneNumber" class="form-control" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">تحقق</button>
+</form>
+

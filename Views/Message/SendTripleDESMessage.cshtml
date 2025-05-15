@@ -1,0 +1,31 @@
+@model NetMvcApp.Models.SendMessageViewModel
+@{ Layout = "_Layout"; ViewData["Title"] = "إرسال رسالة مشفرة (Triple DES)"; }
+
+<h2>@ViewData["Title"]</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+<form asp-action="SendTripleDESMessage" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="ReceiverUserId">إلى المستخدم:</label>
+        <select asp-for="ReceiverUserId" asp-items="ViewBag.Users" class="form-control">
+            <option value="">اختر مستلم</option>
+        </select>
+        <span asp-validation-for="ReceiverUserId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Content">محتوى الرسالة:</label>
+        <textarea asp-for="Content" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">إرسال (Triple DES)</button>
+</form>
+
+<div>
+    <a asp-action="SendRSAMessage">إرسال رسالة بتشفير RSA</a>
+</div>
+
